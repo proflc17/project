@@ -1,0 +1,181 @@
+<!--
+Autor: Florian Pronnegg, Jasmin Zach
+Datum: 27.04.2022
+Projektname: BikerBoost
+Aufgaben der Klasse: GUI des User Screens
+-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Screen</title>
+    <script src="userScreen.js"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<style>
+    .login-container {
+        margin-top: 0%;
+        margin-bottom: 0%;
+    }
+
+    .login-form-1 {
+
+        float: left;
+        width: 45%;
+        padding: 5%;
+        height: 400px;
+        margin-left: 70px;
+        background: #DCDCE4;
+    }
+
+    .login-form-1 h3 {
+        text-align: left;
+        color: #000035;
+    }
+
+    .login-form-1 h5 {
+        text-align: left;
+        color: #000035;
+    }
+
+    .login-form-2 {
+        float: right;
+        width: 45%;
+        padding: 5%;
+        height: 400px;
+        margin-right: 70px;
+        background: #000035;
+    }
+
+    .login-form-2 h3 {
+        text-align: center;
+        color: #fff;
+    }
+
+    .login-container form {
+        padding: 10%;
+    }
+
+    .btnSubmit {
+        width: 50%;
+        border-radius: 1rem;
+        padding: 1.5%;
+        border: none;
+        cursor: pointer;
+    }
+
+    .login-form-2 .btnSubmit {
+        font-weight: 600;
+        color: #000035;
+        background-color: #fff;
+    }
+
+    .login-form-2 .Register {
+        color: #fff;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    .navbar {
+        background-color: #000035;
+        color: #ffffff;
+        margin-bottom: 5%;
+    }
+
+    .image-container {
+        align-content: revert;
+    }
+
+    .login-form-1 .Register {
+        color: #000035;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    .center-cropped {
+        width: 150px;
+        height: 150px;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+
+
+</style>
+<script>
+    var token = $.cookie("token")
+    fetch('/demo-1.0-SNAPSHOT/api/login/token',
+        {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(token)
+        })
+        .then(response => {
+            console.log(token)
+            if(response.status != 200){
+                window.location.href = "/login/loginScreen.html"
+            }else{
+                //TODO: user informieren, dass falscher login
+            }
+        }).catch(err => console.log(err))
+</script>
+<body>
+
+<nav class="navbar navbar-full">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">
+                <img src="/img/Icon.png" alt="..." height="36">
+            </a>
+            <a class="navbar-brand"><h3>BikerBoost</h3></a>
+        </div>
+    </div>
+</nav>
+
+<div class="box">
+        <div class="col-md-6 login-form-1">
+            <div class="container image-container">
+                <img src="/img/userImage.png" height="150px" align="right">
+            </div>
+            <div>
+                <h5 th:text="${user.firstname + ' ' + user.lastname}">Firstname Lastname</h5>
+                <h5 th:text="${user.email}">Email</h5>
+                <h5 th:text="${user.username}">Username</h5>
+                </div>
+            <div>
+                <form action="/api/follower">
+                    <input type="hidden" name="user" th:value="${user.getId()}">
+                    <input type="submit" value="Follower List">
+                </form>
+            </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 login-form-2">
+            <h3>Meeting</h3>
+            <form>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Your Meeting Code" value=""/>
+                </div>
+                <div class="form-group" align="center">
+                    <input type="submit" class="btnSubmit" onclick="createCode()" value="Create Code"/>
+                </div>
+                <div class="form-group" align="center">
+                    <input type="submit" class="btnSubmit" onclick="joinMeeting()" value="Join Meeting"/>
+                </div>
+                <font color="#000035">
+                <div class="form-group">
+                    <input class="btngotologin" type="button" onclick="window.location.href = '/';" value="Go to Login"/>
+                </div>
+                </font>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

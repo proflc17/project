@@ -1,0 +1,104 @@
+<!--
+Autor: Florian Pronnegg, Jasmin Zach
+Datum: 07.06.2022
+Projektname: BikerBoost
+Aufgaben der Klasse: GUI des Meeting Screens
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meeting Screen</title>
+    <script src="meetingScreen.js"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<style>
+    .navbar {
+        background-color: #000035;
+        color: #ffffff;
+        margin-bottom: 5%;
+    }
+
+    .login-container {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .login-form-2 {
+        padding: 5%;
+        background: #000035;
+    }
+
+    .login-form-2 h3 {
+        text-align: center;
+        color: #ffffff;
+    }
+
+    .login-form-2 h5 {
+        text-align: left;
+        color: #ffffff;
+    }
+
+    .login-form-2 h4 {
+        text-align: center;
+        color: #ffffff;
+    }
+
+    .image-container {
+        align-items: center;
+    }
+
+    .btnSubmit {
+        width: 50%;
+        border-radius: 1rem;
+        padding: 1.5%;
+        border: none;
+        cursor: pointer;
+    }
+
+    .login-form-2 .btnSubmit {
+        font-weight: 600;
+        color: #000035;
+        background-color: #fff;
+    }
+</style>
+<body>
+
+<nav class="navbar navbar-full">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">
+                <img src="/img/Icon.png" alt="..." height="36">
+            </a>
+            <a class="navbar-brand"><h3>BikerBoost</h3></a>
+        </div>
+    </div>
+</nav>
+
+<div class="container login-container">
+    <div class="row">
+        <div class="col-md-12 login-form-2">
+            <div>
+                <h3>Meeting</h3>
+                <h4>00:00:00</h4>
+                <p></p>
+                <div class="form-group text-center">
+                    <input type="submit" class="btnSubmit" onclick="muteMyself()" value="Mute Myself"/>
+                </div>
+                <div class="form-group text-center">
+                    <input type="submit" class="btnSubmit" onclick="leaveMeeting()" value="Leave Meeting"/>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

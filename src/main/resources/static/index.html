@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <script src="login/loginScreen.js"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+</head>
+<style>
+    .login-container {
+        margin-top: 0%;
+        margin-bottom: 0%;
+    }
+
+    .login-form-1 {
+        padding: 0%;
+        height: min-content;
+    }
+
+    .login-form-1 h3 {
+        text-align: center;
+        color: #333;
+    }
+
+    .login-form-2 {
+        padding: 5%;
+        background: #000035;
+        height: min-content;
+    }
+
+    .login-form-2 h3 {
+        text-align: center;
+        color: #fff;
+    }
+
+    .login-container form {
+        padding: 10%;
+    }
+
+    .btnSubmit {
+        width: 50%;
+        border-radius: 1rem;
+        padding: 1.5%;
+        border: none;
+        cursor: pointer;
+    }
+
+    .login-form-2 .btnSubmit {
+        font-weight: 600;
+        color: #000035;
+        background-color: #fff;
+    }
+
+    .login-form-2 .Register {
+        color: #fff;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    .navbar {
+        background-color: #000035;
+        color: #ffffff;
+        margin-bottom: 5%;
+    }
+</style>
+
+<body>
+<nav class="navbar navbar-full">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">
+                <img src="/img/Icon.png" alt="..." height="36">
+            </a>
+            <a class="navbar-brand"><h3>BikerBoost</h3></a>
+        </div>
+    </div>
+</nav>
+
+<div class="container login-container">
+    <div class="row">
+        <div class="col-md-6 login-form-1">
+            <img src="/img/loginScreen.png" class="img-rounded"
+                 width="550px" alt="Two bikers driving">
+        </div>
+
+        <div class="col-md-6 login-form-2">
+            <h3>Login</h3>
+            <form action="/api/login" method="post">
+                <div class="form-group">
+                    <input type="text" name="email" id="email" class="form-control" placeholder="Your Email" value=""/>
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" id="passwd" class="form-control" placeholder="Your Password" value=""/>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btnSubmit" value="Login"/>
+                </div>
+                <div class="form-group">
+                    <a href="/register/registerScreen.html"
+                       class="Register" id="wantRegister">Want to register?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

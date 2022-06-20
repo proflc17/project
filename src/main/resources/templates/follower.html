@@ -1,0 +1,191 @@
+<!--
+Autor: Florian Pronnegg, Jasmin Zach
+Datum: 27.04.2022
+Projektname: BikerBoost
+Aufgaben der Klasse: GUI des Follower Screens
+-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Follower Screen</title>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="/follower.js"></script>
+</head>
+
+<style>
+    .login-container {
+        margin-top: 0%;
+        margin-bottom: 0%;
+    }
+
+    .login-form-1 {
+        float: left;
+        width: 45%;
+        padding: 5%;
+        height: 400px;
+        margin-left: 70px;
+        background: #DCDCE4;
+    }
+
+    .login-form-1 h3 {
+        text-align: left;
+        color: #000035;
+    }
+
+    .login-form-1 h5 {
+        text-align: left;
+        color: #000035;
+    }
+
+    .login-form-2 h5 {
+        text-align: left;
+        color: #ffffff;
+    }
+
+    .login-form-2 {
+        float: right;
+        width: 45%;
+        height: 400px;
+        padding: 5%;
+        background: #000035;
+        margin-right: 70px;
+    }
+
+    .login-form-2 h3 {
+        text-align: left;
+        color: #fff;
+    }
+
+    .login-container form {
+        padding: 10%;
+    }
+
+    .btnSubmit {
+        width: 50%;
+        border-radius: 1rem;
+        padding: 1.5%;
+        border: none;
+        cursor: pointer;
+    }
+
+    .login-form-2 .btnSubmit {
+        font-weight: 600;
+        color: #000035;
+        background-color: #fff;
+    }
+
+    .login-form-2 .Register {
+        color: #fff;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    .navbar {
+        background-color: #000035;
+        color: #ffffff;
+        margin-bottom: 5%;
+    }
+
+    .image-container {
+        align-content: revert;
+    }
+
+    .login-form-2 .btntouserscreen{
+        margin-top: 150px;
+        margin-left: 400px;
+        position: fixed;
+
+    }
+
+    .login-form-2 .btnadd{
+      height: 25px;
+        width: 30px;
+        font-size: 12px;
+        padding: 0%;
+        margin-bottom: 5px;
+    }
+
+    .login-form-1 .btndelete{
+        height: 25px;
+        width: 40px;
+        font-size: 12px;
+        padding: 0%;
+    }
+
+    .login-form-1 .messagefield{
+        width: 200px;
+        height: 25px;
+    }
+</style>
+<body>
+
+<nav class="navbar navbar-full">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">
+                <img src="/img/Icon.png" alt="BikerBoost Logo" height="36">
+            </a>
+            <a class="navbar-brand"><h3>BikerBoost</h3></a>
+        </div>
+    </div>
+</nav>
+
+<div class="box">
+
+        <div class="col-md-6 login-form-1">
+            <h3>Friends</h3>
+                <table>
+                    <tr th:each="friend : ${friends}">
+                        <form th:action="${'/api/follower/'+ user.getId() +'/removeFriend/' + friend.getId() }" method="post">
+                            <td><p th:text="${friend.getFirstname() + ' ' + friend.getLastname()}"></p></td>
+                            <td><input  class="btndelete" type="submit" value="delete" ></td>
+                            <td><input class="messagefield" type="text" placeholder="message" id="message" ></td>
+                        </form>
+                    </tr>
+                </table>
+            </div>
+    </div>
+
+    <div class="col-md-6 login-form-2">
+            <div>
+                <h3>Search Friends</h3>
+                <form action="/api/follower" method="get">
+                    <input type="text" placeholder="Search Friend" name="search" id="search-input-name">
+                    <input type="hidden" name="user" th:value="${user.getId()}">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+
+                <div>
+                    <form action="/user">
+                        <input class="btntouserscreen" type="hidden" name="user" th:value="${user.getId()}">
+                        <input class="btntouserscreen" type="submit" value="Go to User Screen">
+                    </form>
+                </div>
+
+                <font color="white">
+                    <table>
+                    <tr th:each="obj : ${searchresult}">
+                        <form th:action="${'/api/follower/'+ user.getId() +'/addFriend/' + obj.getId() }" method="post">
+                            <td><p th:text="${obj.getFirstname()}"></p></td>
+                            <td><input class="btnadd" type="submit" value="add" ></td>
+                        </form>
+                    </tr>
+                </table>
+                </font>
+                </div>
+                </font>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
